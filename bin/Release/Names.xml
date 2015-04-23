@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<names>
+  <name>Anna</name>
+  <name>Beth</name>
+  <name>Carmen</name>
+  <name>Jennifer</name>
+  <name>Jessica</name>
+  <name>Kimberly</name>
+  <name>Kristina</name>
+  <name>Laura</name>
+  <name>Mary</name>
+  <name>Sarah</name>
+  <name gender="Male">Alfred</name>
+  <name gender="Male">Charles</name>
+  <name gender="Male">Daniel</name>
+  <name gender="Male">James</name>
+  <name gender="Male">John</name>
+  <name gender="Male">Luis</name>
+  <name gender="Male">Paul</name>
+  <name gender="Male">Richard</name>
+  <name gender="Male">Robert</name>
+  <name gender="Male">Steve</name>
+</names>

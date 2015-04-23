@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rooms>
+  <room name="bedroom">
+    <location name="bed" isBeacon="true" />
+    <location name="left bedside table" isPlacement="true" />
+    <location name="right bedside table" isPlacement="true" />
+  </room>
+  <room name="living room">
+    <location name="cupboard" isPlacement="true" />
+    <location name="couch table" isPlacement="true" />
+    <location name="cabinet" isPlacement="true" />
+    <location name="tv" isPlacement="false" />
+    <location name="couch" isPlacement="false" isBeacon="true" />
+  </room>
+  <room name="kitchen">
+    <location name="kitchen counter" isPlacement="true" />
+    <location name="stove" isPlacement="true" />
+    <location name="fridge" isPlacement="true" />
+    <location name="sink" isPlacement="true" />
+    <location name="trash bin" isPlacement="false" />
+    <location name="bar table" isPlacement="true" />
+  </room>
+  <room name="hall">
+    <location name="small table" isPlacement="true" />
+    <location name="coat hanger" isPlacement="false" />
+  </room>
+  <room name="office">
+    <location name="counter" isPlacement="true" />
+    <location name="left bookcase" isPlacement="true" />
+    <location name="right bookcase" isPlacement="true" />
+    <location name="dinner table" isPlacement="true" />
+    <location name="desk" isPlacement="true" />
+  </room>
+</rooms>

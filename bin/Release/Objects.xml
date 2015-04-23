@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<categories>
+  <category name="decoration" defaultLocation="couch table" room="living room">
+    <object name="yellow candle" difficulty="easy" />
+    <object name="candle" />
+  </category>
+  <category name="leisure" defaultLocation="small table" room="hall">
+    <object name="cup" difficulty="moderate" />
+    <object name="deodorant" />
+    <object name="cigarettes" difficulty="high" />
+
+  </category>
+  <category name="tool" defaultLocation="counter" room="office">
+    <object name="filler" difficulty="moderate" />
+    <object name="wd40" />
+    <object name="brush" difficulty="high" />
+    <object name="twine" difficulty="moderate" />
+    <object name="tape" type="alike" />
+  </category>
+  <category name="drink" defaultLocation="cabinet" room="living room">
+    <object name="beer" difficulty="moderate" />
+    <object name="coke" />
+    <object name="coffee" />
+    <object name="Red Bull" />
+    <object name="ice-tea" />
+    <object name="coffeepads" difficulty="moderate" />
+    <object name="fresh milk" difficulty="moderate" />
+    <object name="meadow milk" difficulty="moderate" />
+    <object name="fanta" type="alike" />
+  </category>
+  <category name="food" defaultLocation="stove" room="kitchen">
+    <object name="oblates" />
+    <object name="bubblegum"  difficulty="high" />
+    <object name="bubble-mint" />
+    <object name="peanut" />
+    <object name="pringles" />
+    <object name="chocosticks" />
+    <object name="mints" />
+    <object name="noodles" difficulty="moderate" />
+    <object name="muesli cereals" difficulty="high" />
+    <object name="chocolate cereals" />
+    <object name="cranberry cereals" />
+    <object name="apple" type="alike"  />
+    <object name="mandarine" type="alike"  />
+    <object name="lemon" type="alike" />
+  </category>
+</categories>
