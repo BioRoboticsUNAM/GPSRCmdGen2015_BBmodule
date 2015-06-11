@@ -58,6 +58,77 @@ namespace GPSRCmdGen
 			return sb.ToString();
 		}
 
+
+		/// <summary>
+		/// Prints a task including metadata into the output stream.
+		/// </summary>
+		public void PrintTask()
+		{
+			// switch Console color to white, backuping the previous one
+			ConsoleColor pc = Console.ForegroundColor;
+			Console.ForegroundColor = ConsoleColor.White;
+			Console.WriteLine();
+			// Prints a === line
+			string pad = String.Empty.PadRight (Console.BufferWidth - 1, '=');
+			Console.WriteLine (pad);
+			Console.WriteLine();
+			// Prints task string and metadata
+			Console.WriteLine(this.ToString().PadRight(4));
+			this.PrintTaskMetadata();
+			Console.WriteLine();
+			// Prints another line
+			Console.WriteLine (pad);
+			// Restores Console color
+			Console.ForegroundColor = pc;
+			Console.WriteLine();
+		}
+
+		/// <summary>
+		/// Prints the task metadata.
+		/// </summary>
+		private void PrintTaskMetadata()
+		{
+			Console.WriteLine();
+			List<string> remarks = new List<string>();
+			// Print named metadata
+			foreach (Token token in this.Tokens)
+				PrintMetadata(token, remarks);
+			PrintRemarks(remarks);
+		}
+
+		/// <summary>
+		/// Prints the metadata of the given Token
+		/// </summary>
+		/// <param name="token">The token onject containing the metadata to print</param>
+		/// <param name="remarks">A list to store all metadata whose token has no name</param>
+		private void PrintMetadata(Token token, List<string> remarks)
+		{
+			if (token.Metadata.Count < 1) return;
+			// Store remarks for later
+			if (String.IsNullOrEmpty(token.Name))
+			{
+				remarks.AddRange(token.Metadata);
+				return;
+			}
+			// Print current token metadata
+			Console.WriteLine("{0}", token.Name);
+			foreach (string md in token.Metadata)
+				Console.WriteLine("\t{0}", md);
+		}
+
+		/// <summary>
+		/// Prints remaining metadata stored in the remarks list
+		/// </summary>
+		/// <param name="remarks">List of remarks strings</param>
+		private static void PrintRemarks(List<string> remarks)
+		{
+			if (remarks.Count > 0)
+			{
+				Console.WriteLine("remarks");
+				foreach (string r in remarks)
+					Console.WriteLine("\t{0}", r);
+			}
+		}
 		
 		/*
 			 * 

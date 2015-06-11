@@ -36,8 +36,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="Robotics, Version=0.18.11.38, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Robotics.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandExecuters\GetSpeechCmdExecutor.cs" />
     <Compile Include="Containers\CategoryContainer.cs" />
     <Compile Include="Containers\GestureContainer.cs" />
     <Compile Include="Containers\NameContainer.cs" />

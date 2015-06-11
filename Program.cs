@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Robotics.API;
+using GPSRCmdGen.CommandExecuters;
 
 namespace GPSRCmdGen
 {
@@ -12,6 +14,11 @@ namespace GPSRCmdGen
 		/// Random Task generator
 		/// </summary>
 		Generator gen;
+
+		/// <summary>
+		/// BB Module
+		/// </summary>
+		Module module;
 
 		/// <summary>
 		/// Request the user to choose an option for random task generation.
@@ -60,81 +67,6 @@ namespace GPSRCmdGen
 		}
 
 		/// <summary>
-		/// Prints a task including metadata into the output stream.
-		/// </summary>
-		/// <param name="task">The task to be print</param>
-		private void PrintTask(Task task)
-		{
-			if (task == null)
-				return;
-			// switch Console color to white, backuping the previous one
-			ConsoleColor pc = Console.ForegroundColor;
-			Console.ForegroundColor = ConsoleColor.White;
-			Console.WriteLine();
-			// Prints a === line
-			string pad = String.Empty.PadRight (Console.BufferWidth - 1, '=');
-			Console.WriteLine (pad);
-			Console.WriteLine();
-			// Prints task string and metadata
-			Console.WriteLine(task.ToString().PadRight(4));
-			PrintTaskMetadata(task);
-			Console.WriteLine();
-			// Prints another line
-			Console.WriteLine (pad);
-			// Restores Console color
-			Console.ForegroundColor = pc;
-			Console.WriteLine();
-		}
-
-		/// <summary>
-		/// Prints the task metadata.
-		/// </summary>
-		/// <param name="task">The task object containing metadata to print.</param>
-		private void PrintTaskMetadata(Task task)
-		{
-			Console.WriteLine();
-			List<string> remarks = new List<string>();
-			// Print named metadata
-			foreach (Token token in task.Tokens)
-				PrintMetadata(token, remarks);
-			PrintRemarks(remarks);
-		}
-
-		/// <summary>
-		/// Prints the metadata of the given Token
-		/// </summary>
-		/// <param name="token">The token onject containing the metadata to print</param>
-		/// <param name="remarks">A list to store all metadata whose token has no name</param>
-		private void PrintMetadata(Token token, List<string> remarks)
-		{
-			if (token.Metadata.Count < 1) return;
-			// Store remarks for later
-			if (String.IsNullOrEmpty(token.Name))
-			{
-				remarks.AddRange(token.Metadata);
-				return;
-			}
-			// Print current token metadata
-			Console.WriteLine("{0}", token.Name);
-			foreach (string md in token.Metadata)
-				Console.WriteLine("\t{0}", md);
-		}
-
-		/// <summary>
-		/// Prints remaining metadata stored in the remarks list
-		/// </summary>
-		/// <param name="remarks">List of remarks strings</param>
-		private static void PrintRemarks(List<string> remarks)
-		{
-			if (remarks.Count > 0)
-			{
-				Console.WriteLine("remarks");
-				foreach (string r in remarks)
-					Console.WriteLine("\t{0}", r);
-			}
-		}
-
-		/// <summary>
 		/// Starts the user input loop
 		/// </summary>
 		public void Run()
@@ -145,7 +77,8 @@ namespace GPSRCmdGen
 			{
 				opc = GetOption();
 				Task task = GetTask(opc);
-				PrintTask(task);
+				if (task != null)
+					task.PrintTask();
 			}
 			while(opc != 'q');
 		}
@@ -155,7 +88,8 @@ namespace GPSRCmdGen
 		/// </summary>
 		private void Setup ()
 		{
-			this.gen = new Generator ();
+
+			gen = new Generator ();
 
 			Console.ForegroundColor = ConsoleColor.Gray;
 			Console.WriteLine ("GPSR Generator 0.1 Beta");
@@ -175,6 +109,12 @@ namespace GPSRCmdGen
 			gen.ValidateLocations ();
 			Console.WriteLine ();
 			Console.WriteLine ();
+
+			this.module = new Module("GPSR_cmd_gen", 2007);
+		    this.module.CommandManager.CommandExecuters.Add(new GetSpeechCmdExecutor(gen));
+		    this.module.CommandManager.Ready = true;
+
+		    this.module.Start();
 		}
 
 		/// <summary>
@@ -214,7 +154,7 @@ namespace GPSRCmdGen
 					case 3: tier = DifficultyDegree.High; break;
 					default: return;
 				}
-				p.PrintTask(p.gen.GenerateTask(tier));
+				p.gen.GenerateTask(tier).PrintTask();
 			}
 		}
 	}
