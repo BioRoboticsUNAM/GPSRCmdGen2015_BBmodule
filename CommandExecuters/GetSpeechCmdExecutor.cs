@@ -7,7 +7,7 @@ namespace GPSRCmdGen.CommandExecuters
 	/// <summary>
 	/// Implements a synchronous command execuer for the play command
 	/// </summary>
-	public class GetSpeechCmdExecutor : SyncCommandExecuter
+	public class GetSpeechCmdExecutor : AsyncCommandExecuter
 	{
 		#region Variables
 		private Generator gen;
@@ -36,7 +36,7 @@ namespace GPSRCmdGen.CommandExecuters
 		/// <returns>The Response object result of provided command execution. If no response is required, must return null</returns>
 		/// <remarks>If the command execution is aborted the execution of this method is
 		/// canceled and a failure response is sent if required</remarks>
-		protected override Response SyncTask(Command command)
+		protected override Response AsyncTask(Command command)
 		{
 			bool result = false;
 			try
@@ -63,6 +63,11 @@ namespace GPSRCmdGen.CommandExecuters
 
 			return Response.CreateFromCommand(command, result);
 
+		}
+
+		public override void DefaultParameterParser(string[] parameters)
+		{
+			
 		}
 
 		#endregion
