@@ -126,6 +126,7 @@ namespace BBModule
 			this.module.ConnectionManager.Start();
 			this.module.WaitForClientToConnect();
 			module.CommandManager.Start();
+			module.WaitSharedVariablesLoaded();
 			Console.WriteLine("Connected!");
 			this.module.CommandManager.Ready = true;
 			Console.WriteLine("Running!");
