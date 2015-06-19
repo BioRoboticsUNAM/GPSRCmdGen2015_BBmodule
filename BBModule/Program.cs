@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Robotics.API;
-using Robotics.API.PrimitiveSharedVariables;
+using Robotics.API.MiscSharedVariables;
 using GPSRCmdGen;
 using BBModule.CommandExecuters;
 
@@ -97,8 +97,8 @@ namespace BBModule
 			module.CommandManager.SharedVariablesLoaded += (cmdMan) =>
 			{
 				Console.WriteLine("Shared variables loaded!");
-				StringSharedVariable recognizedSpeech = new StringSharedVariable("recognizedSpeech");
-				this.module.AddSharedVariable<StringSharedVariable>(ref recognizedSpeech);
+				RecognizedSpeechSharedVariable recognizedSpeech = new RecognizedSpeechSharedVariable("recognizedSpeech");
+				this.module.AddSharedVariable<RecognizedSpeechSharedVariable>(ref recognizedSpeech);
 			};
 
 			Console.ForegroundColor = ConsoleColor.Gray;

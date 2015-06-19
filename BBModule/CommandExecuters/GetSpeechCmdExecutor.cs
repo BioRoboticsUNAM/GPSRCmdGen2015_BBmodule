@@ -1,7 +1,8 @@
 using System;
 using Robotics.API;
+using Robotics.API.MiscSharedVariables;
+using Robotics.HAL.Sensors;
 using GPSRCmdGen;
-using Robotics.API.PrimitiveSharedVariables;
 
 namespace BBModule.CommandExecuters
 {
@@ -67,10 +68,13 @@ namespace BBModule.CommandExecuters
 			var svs = this.CommandManager.SharedVariables;
 			if (svs.Contains("recognizedSpeech"))
 			{
-				var s = svs["recognizedSpeech"];
-				var recognizedSpeech = svs["recognizedSpeech"] as StringSharedVariable;
-				if (recognizedSpeech != null)
-					recognizedSpeech.TryWrite(r.Parameters);
+				var svrs = svs["recognizedSpeech"] as RecognizedSpeechSharedVariable;
+				if (svrs != null)
+				{
+					RecognizedSpeechAlternate[] alts = { new RecognizedSpeechAlternate(t.ToString(), 0.99f) };
+					RecognizedSpeech value = new RecognizedSpeech(alts);
+					svrs.TryWrite(value);
+				}
 			}
 			return r;
 
