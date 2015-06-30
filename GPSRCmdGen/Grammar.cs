@@ -47,7 +47,7 @@ namespace GPSRCmdGen
 		/// <summary>
 		/// Gets the set of production rules (accessible by rule name)
 		/// </summary>
-		internal Dictionary<string, ProductionRule> ProductionRules {
+		public Dictionary<string, ProductionRule> ProductionRules {
 			get{ return this.productionRules;}
 		}
 
